@@ -4,10 +4,10 @@ import {format, parseISO} from "date-fns";
 
 const bgColor = (game) => {
     if (game.gamebetcalcs.away_ml_bayes_er > 0) {
-        return `rgba(76, 187, 23, ${game.gamebetcalcs.away_ml_bayes_er * 2})`;
+        return `rgba(74, 246, 195, ${game.gamebetcalcs.away_ml_bayes_er * 2})`;
     }
     else if (game.gamebetcalcs.home_ml_bayes_er > 0) {
-        return `rgba(76, 187, 23, ${game.gamebetcalcs.home_ml_bayes_er * 2})`;
+        return `rgba(74, 246, 195, ${game.gamebetcalcs.home_ml_bayes_er * 2})`;
     }
     else {
         return null;
@@ -20,7 +20,7 @@ const outcomeColor = (game, side) => {
             if (game.AwayTeamScore > game.HomeTeamScore) {
                 return 'lime';
             } else {
-                return 'red';
+                return 'error';
             }
         } else {
             return null;
@@ -32,7 +32,7 @@ const outcomeColor = (game, side) => {
             if (game.HomeTeamScore > game.AwayTeamScore) {
                 return 'lime';
             } else {
-                return 'red';
+                return 'error';
             }
         } else {
             return null;
@@ -53,7 +53,7 @@ const GameCard = ({game}) => {
                     </Typography>
                 </Grid>
                 <Grid item xs={4}>
-                    <Typography color={game.gamebetcalcs.away_ml_bayes_er > 0 ? 'goldenrod' : 'white'} >
+                    <Typography color={game.gamebetcalcs.away_ml_bayes_er > 0 ? 'primary' : 'white'} >
                         {game.AwayTeam.Key}
                     </Typography>
                 </Grid>
@@ -66,7 +66,7 @@ const GameCard = ({game}) => {
                     </Typography>
                 </Grid>
                 <Grid item xs={4}>
-                    <Typography color={game.gamebetcalcs.home_ml_bayes_er > 0 ? 'goldenrod' : 'white'}>
+                    <Typography color={game.gamebetcalcs.home_ml_bayes_er > 0 ? 'primary' : 'white'}>
                         {game.HomeTeam.Key}
                     </Typography>
                 </Grid>

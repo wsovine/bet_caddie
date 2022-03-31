@@ -8,7 +8,22 @@ const theme = createTheme({
     palette: {
         mode: 'dark',
         // background: '#121212'
-    },
+        primary: {
+            main: '#fb8b1e'
+        },
+        secondary: {
+            main: '#0068ff'
+        },
+        success: {
+            main: '#4af6c3'
+        },
+        error: {
+            main: '#ff433d'
+        },
+        black: {
+            main: '#000000'
+        }
+    }
 });
 
 function App() {
