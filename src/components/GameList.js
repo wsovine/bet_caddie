@@ -46,7 +46,7 @@ const GameList = () => {
 
     return (
         <Box>
-            <h1>Games</h1>
+            <h1>NCAA Football</h1>
             {
                 Object.keys(week).length !== 0 ? <GameListWeekSelect
                     api={api} season={week.season} week={week.week}
