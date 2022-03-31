@@ -14,6 +14,34 @@ const bgColor = (game) => {
     }
 }
 
+const outcomeColor = (game, side) => {
+    if (side === 'away') {
+        if (game.gamebetcalcs.away_ml_bayes_er > 0) {
+            if (game.AwayTeamScore > game.HomeTeamScore) {
+                return 'lime';
+            } else {
+                return 'red';
+            }
+        } else {
+            return null;
+        }
+    }
+
+    if (side === 'home') {
+        if (game.gamebetcalcs.home_ml_bayes_er > 0) {
+            if (game.HomeTeamScore > game.AwayTeamScore) {
+                return 'lime';
+            } else {
+                return 'red';
+            }
+        } else {
+            return null;
+        }
+    }
+
+    return null;
+}
+
 
 const GameCard = ({game}) => {
     return (
@@ -33,7 +61,9 @@ const GameCard = ({game}) => {
                     {game.AwayTeamMoneyLine}
                 </Grid>
                 <Grid item xs={4} >
-                    {game.AwayTeamScore}
+                    <Typography color={outcomeColor(game, 'away')}>
+                        {game.AwayTeamScore}
+                    </Typography>
                 </Grid>
                 <Grid item xs={4}>
                     <Typography color={game.gamebetcalcs.home_ml_bayes_er > 0 ? 'goldenrod' : 'white'}>
@@ -44,7 +74,9 @@ const GameCard = ({game}) => {
                     {game.HomeTeamMoneyLine}
                 </Grid>
                 <Grid item xs={4} >
-                    {game.HomeTeamScore}
+                    <Typography color={outcomeColor(game, 'home')}>
+                        {game.HomeTeamScore}
+                    </Typography>
                 </Grid>
             </Grid>
         </Card>

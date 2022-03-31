@@ -21,15 +21,15 @@ const GameList = () => {
     const api = axios.create({
         baseURL: process.env.REACT_APP_API_ENDPOINT,
         headers: {
-            'Authorization': process.env.API_TOKEN
+            'Authorization': process.env.API_TOKEN,
         },
+        withCredentials: true
     });
 
     const fetchCurrentWeek = (params={}) => {
         api.get(
             '/ncaaf/current_or_latest_week/'
         ).then(resp => {
-            console.log(resp);
             setWeek(resp.data);
         })
     };
@@ -39,7 +39,6 @@ const GameList = () => {
             api.get(
                 `/ncaaf/games_list/${week.season}/${week.season_type}/${week.week}/`
             ).then(resp => {
-                console.log(resp);
                 setGames(resp.data.games.filter(g => g.gamebetcalcs));
             })
         }

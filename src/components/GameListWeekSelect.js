@@ -21,7 +21,6 @@ const GameListWeekSelect = ({api, season, week, seasonType, setWeek}) => {
             api.get(
                 `/ncaaf/weeks/${seasonSelection}/`
             ).then(resp => {
-                console.log(resp);
                 setWeekOptions(resp.data.weeks.filter(w => w.season_type === seasonTypeSelection));
             })
         }
