@@ -47,9 +47,14 @@ const GameCard = ({game}) => {
     return (
         <Card style={{backgroundColor: bgColor(game)}}>
             <Grid container>
-                <Grid item xs={10}>
+                <Grid item xs={6}>
                     <Typography fontSize={10} align='left'>
                         {game.DateTime ? format(parseISO(game.DateTime), 'E LLL d h:mm a') : game.Status}
+                    </Typography>
+                </Grid>
+                <Grid item xs={6}>
+                    <Typography fontSize={10} align='right'>
+                        {game.Status}
                     </Typography>
                 </Grid>
                 <Grid item xs={4}>

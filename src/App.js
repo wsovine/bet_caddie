@@ -3,6 +3,19 @@ import './App.css';
 import * as React from "react";
 import GameList from "./components/GameList";
 import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
+import NeueHaasDisplayLight from './fonts/NeueHaasDisplayLight.ttf'
+
+const neueHaasLight = {
+    fontFamily: 'NeueHaas',
+    fontStyle: 'normal',
+    fontDisplay: 'swap',
+    fontWeight: 400,
+    src: `
+    local('NeueHaasDisplayLight'),
+    local('NeueHaasDisplayMedium'),
+    url(${NeueHaasDisplayLight}) format('truetype')
+  `,
+};
 
 const theme = createTheme({
     palette: {
@@ -23,7 +36,25 @@ const theme = createTheme({
         black: {
             main: '#000000'
         }
-    }
+    },
+    typography: {
+        fontFamily: [
+            'NeueHaas',
+            '"Helvetica Neue"',
+            'Arial',
+            'sans-serif',
+            '"Apple Color Emoji"',
+            '"Segoe UI Emoji"',
+            '"Segoe UI Symbol"',
+        ].join(','),
+    },
+    overrides: {
+        MuiCssBaseline: {
+            '@global': {
+                '@font-face': [neueHaasLight],
+            },
+        },
+    },
 });
 
 function App() {
