@@ -1,13 +1,15 @@
-import {Card, Grid, Typography} from "@mui/material";
+import {Card, CardActionArea, Grid, Typography} from "@mui/material";
 import {format, parseISO} from "date-fns";
+import {useState} from "react";
+import GameDetailDialog from "./GameDetailDialog";
 
 
 const bgColor = (game) => {
-    if (game.gamebetcalcs.away_ml_bayes_er > 0) {
-        return `rgba(74, 246, 195, ${game.gamebetcalcs.away_ml_bayes_er * 2})`;
+    if (game.gamebetcalcs.away_ml_er > 0) {
+        return `rgba(37, 123, 97, ${game.gamebetcalcs.away_ml_er })`;
     }
-    else if (game.gamebetcalcs.home_ml_bayes_er > 0) {
-        return `rgba(74, 246, 195, ${game.gamebetcalcs.home_ml_bayes_er * 2})`;
+    else if (game.gamebetcalcs.home_ml_er > 0) {
+        return `rgba(37, 123, 97, ${game.gamebetcalcs.home_ml_er })`;
     }
     else {
         return null;
@@ -16,7 +18,7 @@ const bgColor = (game) => {
 
 const outcomeColor = (game, side) => {
     if (side === 'away') {
-        if (game.gamebetcalcs.away_ml_bayes_er > 0) {
+        if (game.gamebetcalcs.away_ml_er > 0) {
             if (game.AwayTeamScore > game.HomeTeamScore) {
                 return 'lime';
             } else {
@@ -28,7 +30,7 @@ const outcomeColor = (game, side) => {
     }
 
     if (side === 'home') {
-        if (game.gamebetcalcs.home_ml_bayes_er > 0) {
+        if (game.gamebetcalcs.home_ml_er > 0) {
             if (game.HomeTeamScore > game.AwayTeamScore) {
                 return 'lime';
             } else {
@@ -44,46 +46,60 @@ const outcomeColor = (game, side) => {
 
 
 const GameCard = ({game}) => {
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = () => {
+        console.log(game);
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     return (
         <Card style={{backgroundColor: bgColor(game)}}>
-            <Grid container>
-                <Grid item xs={6}>
-                    <Typography fontSize={10} align='left'>
-                        {game.DateTime ? format(parseISO(game.DateTime), 'E LLL d h:mm a') : game.Status}
-                    </Typography>
+            <GameDetailDialog game={game} open={open} handleClose={handleClose} />
+            <CardActionArea onClick={handleOpen}>
+                <Grid container>
+                    <Grid item xs={6}>
+                        <Typography fontSize={10} align='left'>
+                            {game.DateTime ? format(parseISO(game.DateTime), 'E LLL d h:mm a') : game.Status}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Typography fontSize={10} align='right'>
+                            {game.Status}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Typography color={game.gamebetcalcs.away_ml_er > 0 ? 'primary' : 'white'} >
+                            {game.AwayTeam.Key}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={4} >
+                        {game.AwayTeamMoneyLine}
+                    </Grid>
+                    <Grid item xs={4} >
+                        <Typography color={outcomeColor(game, 'away')}>
+                            {game.AwayTeamScore}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                        <Typography color={game.gamebetcalcs.home_ml_er > 0 ? 'primary' : 'white'}>
+                            {game.HomeTeam.Key}
+                        </Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                        {game.HomeTeamMoneyLine}
+                    </Grid>
+                    <Grid item xs={4} >
+                        <Typography color={outcomeColor(game, 'home')}>
+                            {game.HomeTeamScore}
+                        </Typography>
+                    </Grid>
                 </Grid>
-                <Grid item xs={6}>
-                    <Typography fontSize={10} align='right'>
-                        {game.Status}
-                    </Typography>
-                </Grid>
-                <Grid item xs={4}>
-                    <Typography color={game.gamebetcalcs.away_ml_bayes_er > 0 ? 'primary' : 'white'} >
-                        {game.AwayTeam.Key}
-                    </Typography>
-                </Grid>
-                <Grid item xs={4} >
-                    {game.AwayTeamMoneyLine}
-                </Grid>
-                <Grid item xs={4} >
-                    <Typography color={outcomeColor(game, 'away')}>
-                        {game.AwayTeamScore}
-                    </Typography>
-                </Grid>
-                <Grid item xs={4}>
-                    <Typography color={game.gamebetcalcs.home_ml_bayes_er > 0 ? 'primary' : 'white'}>
-                        {game.HomeTeam.Key}
-                    </Typography>
-                </Grid>
-                <Grid item xs={4}>
-                    {game.HomeTeamMoneyLine}
-                </Grid>
-                <Grid item xs={4} >
-                    <Typography color={outcomeColor(game, 'home')}>
-                        {game.HomeTeamScore}
-                    </Typography>
-                </Grid>
-            </Grid>
+            </CardActionArea>
         </Card>
     )
 }

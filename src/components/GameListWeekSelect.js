@@ -31,6 +31,7 @@ const GameListWeekSelect = ({api, season, week, seasonType, setWeek}) => {
             <FormControl sx={{m: 1, minWidth: 120}}>
                 <InputLabel>Season</InputLabel>
                 <Select value={season} onChange={e => setSeasonSelection(e.target.value)}>
+                    <MenuItem value="2022">2022</MenuItem>
                     <MenuItem value="2021">2021</MenuItem>
                     <MenuItem value="2020">2020</MenuItem>
                     <MenuItem value="2019">2019</MenuItem>
