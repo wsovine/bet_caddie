@@ -57,7 +57,7 @@ const GameList = () => {
     const profit_per_dollar = (odds) => {
         let mult = 0;
         if (odds < 0) {
-            mult =1 - 100 / odds
+            mult = 1 - 100 / odds
         } else {
             mult = 1 + odds / 100
         }
@@ -70,9 +70,9 @@ const GameList = () => {
             let newEr = 0;
             games.forEach(game => {
                 if (game.gamebetcalcs.away_ml_er > 0 && game.gamebetcalcs.away_ml_er != null){
-                    newEr += game.gamebetcalcs.away_ml_er * profit_per_dollar(game.AwayTeamMoneyLine);
+                    newEr += game.gamebetcalcs.away_ml_er;
                 } else if (game.gamebetcalcs.home_ml_er > 0 && game.gamebetcalcs.home_ml_er != null) {
-                    newEr += game.gamebetcalcs.home_ml_er * profit_per_dollar(game.HomeTeamMoneyLine);
+                    newEr += game.gamebetcalcs.home_ml_er;
                 }
                 setEr(newEr);
             });
