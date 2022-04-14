@@ -86,15 +86,15 @@ const GameList = () => {
             let newAr = 0;
             games.forEach(game => {
                 if (game.gamebetcalcs.away_ml_er > 0 && game.gamebetcalcs.away_ml_er != null){
-                    if (game.AwayTeamScore > game.HomeTeamScore){
+                    if (game.AwayTeamScore > game.HomeTeamScore) {
                         newAr += profit_per_dollar(game.AwayTeamMoneyLine);
-                    } else {
+                    }else if (game.AwayTeamScore < game.HomeTeamScore) {
                         newAr -=1;
                     }
                 } else if (game.gamebetcalcs.home_ml_er > 0 && game.gamebetcalcs.home_ml_er != null) {
                     if (game.HomeTeamScore > game.AwayTeamScore) {
                         newAr += profit_per_dollar(game.HomeTeamMoneyLine);
-                    } else {
+                    } else if (game.HomeTeamScore < game.AwayTeamScore) {
                         newAr -= 1;
                     }
                 }
