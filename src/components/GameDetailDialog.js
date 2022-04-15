@@ -32,10 +32,9 @@ const GameDetailDialog = ({game, open, handleClose}) => {
             <DialogTitle>{game.AwayTeamName} @ {game.HomeTeamName}</DialogTitle>
             <DialogContent>
                 <DialogContentText>
-                    <Grid container spacing={5}>
-                        <Grid item xs={6}>
-                            <Typography color='secondary' variant='h5' align='center'>Vegas</Typography>
-                            <Grid container>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                            <Grid container spacing={1} alignItems='center' justifyItems='center'>
                                 <Grid item xs={4}>
                                     <Typography
                                         variant='subtitle1'
@@ -43,7 +42,9 @@ const GameDetailDialog = ({game, open, handleClose}) => {
                                         align='left'>{game.AwayTeam.Key}
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={4}/>
+                                <Grid item xs={4}>
+                                    <Typography color='secondary' variant='h5' align='center'>Vegas</Typography>
+                                </Grid>
                                 <Grid item xs={4}>
                                     <Typography
                                         variant='subtitle1'
@@ -75,9 +76,8 @@ const GameDetailDialog = ({game, open, handleClose}) => {
                             </Grid>
                         </Grid>
 
-                        <Grid item xs={6}>
-                            <Typography color='secondary' variant='h5' align='center'>Calculated</Typography>
-                            <Grid container>
+                        <Grid item xs={12}>
+                            <Grid container spacing={1} alignItems='center' justifyItems='center'>
                                 <Grid item xs={4}>
                                     <Typography
                                         variant='subtitle1'
@@ -86,7 +86,9 @@ const GameDetailDialog = ({game, open, handleClose}) => {
                                         {game.AwayTeam.Key}
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={4}/>
+                                <Grid item xs={4}>
+                                    <Typography color='secondary' variant='h5' align='center'>Calculated</Typography>
+                                </Grid>
                                 <Grid item xs={4}>
                                     <Typography
                                         variant='subtitle1'
@@ -101,7 +103,7 @@ const GameDetailDialog = ({game, open, handleClose}) => {
                                         {minimum_odds(game.gamebetcalcs.away_ml_bayes_prob, 0)}
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={4}><Typography align='center'>Minimum</Typography></Grid>
+                                <Grid item xs={4}><Typography align='center'>Minimum ML</Typography></Grid>
                                 <Grid item xs={4} alignContent='right'>
                                     <Typography align='right'>
                                         {minimum_odds(game.gamebetcalcs.home_ml_bayes_prob, 0)}
@@ -120,32 +122,9 @@ const GameDetailDialog = ({game, open, handleClose}) => {
                                     </Typography>
                                 </Grid>
 
-                            </Grid>
-
-                        </Grid>
-
-                        <Grid item xs={12}>
-                            <Grid container>
-                                <Grid item xs={4}>
-                                    <Typography
-                                        variant='subtitle1'
-                                        color={game.gamebetcalcs.away_ml_er > 0 ? 'primary' : 'secondary'}
-                                        align='right'>
-                                        {game.AwayTeam.Key}
-                                    </Typography>
-                                </Grid>
-                                <Grid item xs={4}/>
-                                <Grid item xs={4}>
-                                    <Typography
-                                        variant='subtitle1'
-                                        color={game.gamebetcalcs.home_ml_er > 0 ? 'primary' : 'secondary'}
-                                        align='left'>
-                                        {game.HomeTeam.Key}
-                                    </Typography>
-                                </Grid>
 
                                 <Grid item xs={4}>
-                                    <Typography align='right'>
+                                    <Typography>
                                         {Math.round(game.gamebetcalcs.away_ml_er * 100)}%
                                     </Typography>
                                 </Grid>
@@ -155,13 +134,15 @@ const GameDetailDialog = ({game, open, handleClose}) => {
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={4}>
-                                    <Typography align='left'>
+                                    <Typography align='right'>
                                         {Math.round(game.gamebetcalcs.home_ml_er * 100)}%
                                     </Typography>
                                 </Grid>
 
                             </Grid>
+
                         </Grid>
+
                     </Grid>
                 </DialogContentText>
             </DialogContent>

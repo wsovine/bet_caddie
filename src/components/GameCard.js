@@ -49,7 +49,6 @@ const GameCard = ({game}) => {
     const [open, setOpen] = useState(false);
 
     const handleOpen = () => {
-        console.log(game);
         setOpen(true);
     };
 
