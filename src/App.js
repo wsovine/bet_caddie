@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import * as React from "react";
-import GameList from "./components/GameList";
+import GameList from "./components/ncaaf/GameList";
 import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import NeueHaasDisplayLight from './fonts/NeueHaasDisplayLight.ttf'
 
