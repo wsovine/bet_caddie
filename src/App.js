@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import * as React from "react";
-import GameList from "./components/ncaaf/GameList";
+import CeloGameList from "./components/ncaaf/CeloGameList";
 import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import NeueHaasDisplayLight from './fonts/NeueHaasDisplayLight.ttf'
 
@@ -61,7 +61,7 @@ function App() {
   return (
       <ThemeProvider theme={theme}>
           <CssBaseline/>
-          <GameList/>
+          <CeloGameList/>
       </ThemeProvider>
   );
 }

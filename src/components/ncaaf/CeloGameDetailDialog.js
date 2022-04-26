@@ -15,7 +15,7 @@ const minimum_odds = (probability, desired_return) => {
 
 
 
-const GameDetailDialog = ({game, open, handleClose}) => {
+const CeloGameDetailDialog = ({game, open, handleClose}) => {
     return (
         <Dialog open={open} onClose={handleClose} onBackdropClick={handleClose}>
             <IconButton
@@ -150,4 +150,4 @@ const GameDetailDialog = ({game, open, handleClose}) => {
     )
 };
 
-export default GameDetailDialog;
+export default CeloGameDetailDialog;

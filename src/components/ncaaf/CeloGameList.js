@@ -1,11 +1,11 @@
 import axios from "axios";
 import {useState, useEffect} from "react";
-import GameCard from "./GameCard";
-import GameListWeekSelect from "./GameListWeekSelect";
+import CeloGameCard from "./CeloGameCard";
+import CeloGameListWeekSelect from "./CeloGameListWeekSelect";
 import {Box, Grid, Typography} from "@mui/material";
 
 
-const GameList = () => {
+const CeloGameList = () => {
     const [games, setGames] = useState([]);
     const [week, setWeek] = useState({});
     const [er, setEr] = useState(0);
@@ -107,7 +107,7 @@ const GameList = () => {
         <Box>
             <Typography variant='h1' color='primary'>NCAA Football</Typography>
             {
-                Object.keys(week).length !== 0 ? <GameListWeekSelect
+                Object.keys(week).length !== 0 ? <CeloGameListWeekSelect
                     api={api} season={week.season} week={week.week}
                     seasonType={week.season_type} setWeek={setWeek}
                 /> : null
@@ -128,7 +128,7 @@ const GameList = () => {
             <Grid container spacing={0.5}>
                 {games.map(game => (
                     <Grid item key={game.GameID} xs={6} sm={4} md={3}>
-                        <GameCard game={game}/>
+                        <CeloGameCard game={game}/>
                     </Grid>
                 ))}
             </Grid>
@@ -136,4 +136,4 @@ const GameList = () => {
     );
 }
 
-export default GameList;
+export default CeloGameList;

@@ -1,7 +1,7 @@
 import {Card, CardActionArea, Grid, Typography} from "@mui/material";
 import {format, parseISO} from "date-fns";
 import {useState} from "react";
-import GameDetailDialog from "./GameDetailDialog";
+import CeloGameDetailDialog from "./CeloGameDetailDialog";
 
 
 const bgColor = (game) => {
@@ -45,7 +45,7 @@ const outcomeColor = (game, side) => {
 }
 
 
-const GameCard = ({game}) => {
+const CeloGameCard = ({game}) => {
     const [open, setOpen] = useState(false);
 
     const handleOpen = () => {
@@ -58,7 +58,7 @@ const GameCard = ({game}) => {
 
     return (
         <Card style={{backgroundColor: bgColor(game)}}>
-            <GameDetailDialog game={game} open={open} handleClose={handleClose} />
+            <CeloGameDetailDialog game={game} open={open} handleClose={handleClose} />
             <CardActionArea onClick={handleOpen}>
                 <Grid container>
                     <Grid item xs={6}>
@@ -103,4 +103,4 @@ const GameCard = ({game}) => {
     )
 }
 
-export default GameCard;
+export default CeloGameCard;
