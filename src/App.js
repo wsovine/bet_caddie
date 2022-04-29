@@ -4,6 +4,8 @@ import * as React from "react";
 import CeloGameList from "./components/ncaaf/CeloGameList";
 import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import NeueHaasDisplayLight from './fonts/NeueHaasDisplayLight.ttf'
+import ModelSelectMenu from "./components/general/ModelSelectMenu";
+import {useState} from "react";
 
 const neueHaasLight = {
     fontFamily: 'NeueHaas',
@@ -58,10 +60,15 @@ const theme = createTheme({
 });
 
 function App() {
+    const [model, setModel] = useState(<CeloGameList />);
+
   return (
       <ThemeProvider theme={theme}>
           <CssBaseline/>
-          <CeloGameList/>
+
+          <ModelSelectMenu setModel={setModel} />
+
+          {model}
       </ThemeProvider>
   );
 }

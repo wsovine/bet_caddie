@@ -15,7 +15,7 @@ const minimum_odds = (probability, desired_return) => {
 
 
 
-const CeloGameDetailDialog = ({game, open, handleClose}) => {
+const ArmGameDetailDialog = ({game, open, handleClose}) => {
     return (
         <Dialog open={open} onClose={handleClose} onBackdropClick={handleClose}>
             <IconButton
@@ -29,7 +29,7 @@ const CeloGameDetailDialog = ({game, open, handleClose}) => {
             >
                 <CloseIcon color='error' />
             </IconButton>
-            <DialogTitle>{game.AwayTeamName} @ {game.HomeTeamName}</DialogTitle>
+            <DialogTitle>{game.away_team} @ {game.home_team}</DialogTitle>
             <DialogContent>
                 <DialogContentText>
                     <Grid container spacing={2}>
@@ -38,8 +38,9 @@ const CeloGameDetailDialog = ({game, open, handleClose}) => {
                                 <Grid item xs={4}>
                                     <Typography
                                         variant='subtitle1'
-                                        color={game.celobetcalcs.away_ml_er > 0 ? 'primary' : 'secondary'}
-                                        align='left'>{game.AwayTeam.Key}
+                                        color={game.armbetcalcs.away_ml_er > 0 ? 'primary' : 'secondary'}
+                                        align='left'>
+                                        {game.away_team}
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={4}>
@@ -48,28 +49,28 @@ const CeloGameDetailDialog = ({game, open, handleClose}) => {
                                 <Grid item xs={4}>
                                     <Typography
                                         variant='subtitle1'
-                                        color={game.celobetcalcs.home_ml_er > 0 ? 'primary' : 'secondary'}
-                                        align='right'>{game.HomeTeam.Key}
+                                        color={game.armbetcalcs.home_ml_er > 0 ? 'primary' : 'secondary'}
+                                        align='right'>{game.home_team}
                                     </Typography>
                                 </Grid>
 
                                 <Grid item xs={4}>
-                                    <Typography align='left'>{game.AwayTeamMoneyLine}</Typography>
+                                    <Typography align='left'>{game.armbetcalcs.away_ml}</Typography>
                                 </Grid>
                                 <Grid item xs={4}><Typography align='center'>Moneyline</Typography></Grid>
                                 <Grid item xs={4} alignContent='right'>
-                                    <Typography align='right'>{game.HomeTeamMoneyLine}</Typography>
+                                    <Typography align='right'>{game.armbetcalcs.home_ml}</Typography>
                                 </Grid>
 
                                 <Grid item xs={4}>
                                     <Typography align='left'>
-                                        {Math.round(game.celobetcalcs.away_ml_prob_less_vig * 100)}%
+                                        {Math.round(game.armbetcalcs.away_ml_prob_less_vig * 100)}%
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={4}><Typography align='center'>Probability</Typography></Grid>
                                 <Grid item xs={4} alignContent='right'>
                                     <Typography align='right'>
-                                        {Math.round(game.celobetcalcs.home_ml_prob_less_vig * 100)}%
+                                        {Math.round(game.armbetcalcs.home_ml_prob_less_vig * 100)}%
                                     </Typography>
                                 </Grid>
 
@@ -81,9 +82,9 @@ const CeloGameDetailDialog = ({game, open, handleClose}) => {
                                 <Grid item xs={4}>
                                     <Typography
                                         variant='subtitle1'
-                                        color={game.celobetcalcs.away_ml_er > 0 ? 'primary' : 'secondary'}
+                                        color={game.armbetcalcs.away_ml_er > 0 ? 'primary' : 'secondary'}
                                         align='left'>
-                                        {game.AwayTeam.Key}
+                                        {game.away_team}
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={4}>
@@ -92,40 +93,40 @@ const CeloGameDetailDialog = ({game, open, handleClose}) => {
                                 <Grid item xs={4}>
                                     <Typography
                                         variant='subtitle1'
-                                        color={game.celobetcalcs.home_ml_er > 0 ? 'primary' : 'secondary'}
+                                        color={game.armbetcalcs.home_ml_er > 0 ? 'primary' : 'secondary'}
                                         align='right'>
-                                        {game.HomeTeam.Key}
+                                        {game.home_team}
                                     </Typography>
                                 </Grid>
 
                                 <Grid item xs={4}>
                                     <Typography align='left'>
-                                        {minimum_odds(game.celobetcalcs.away_ml_bayes_prob, 0)}
+                                        {minimum_odds(game.armbetcalcs.away_ml_bayes_prob, 0)}
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={4}><Typography align='center'>Minimum ML</Typography></Grid>
                                 <Grid item xs={4} alignContent='right'>
                                     <Typography align='right'>
-                                        {minimum_odds(game.celobetcalcs.home_ml_bayes_prob, 0)}
+                                        {minimum_odds(game.armbetcalcs.home_ml_bayes_prob, 0)}
                                     </Typography>
                                 </Grid>
 
                                 <Grid item xs={4}>
                                     <Typography align='left'>
-                                        {Math.round(game.celobetcalcs.away_ml_bayes_prob * 100)}%
+                                        {Math.round(game.armbetcalcs.away_ml_bayes_prob * 100)}%
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={4}><Typography align='center'>Probability</Typography></Grid>
                                 <Grid item xs={4} alignContent='right'>
                                     <Typography align='right'>
-                                        {Math.round(game.celobetcalcs.home_ml_bayes_prob * 100)}%
+                                        {Math.round(game.armbetcalcs.home_ml_bayes_prob * 100)}%
                                     </Typography>
                                 </Grid>
 
 
                                 <Grid item xs={4}>
                                     <Typography>
-                                        {Math.round(game.celobetcalcs.away_ml_er * 100)}%
+                                        {Math.round(game.armbetcalcs.away_ml_er * 100)}%
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={4}>
@@ -135,7 +136,7 @@ const CeloGameDetailDialog = ({game, open, handleClose}) => {
                                 </Grid>
                                 <Grid item xs={4}>
                                     <Typography align='right'>
-                                        {Math.round(game.celobetcalcs.home_ml_er * 100)}%
+                                        {Math.round(game.armbetcalcs.home_ml_er * 100)}%
                                     </Typography>
                                 </Grid>
 
@@ -150,4 +151,4 @@ const CeloGameDetailDialog = ({game, open, handleClose}) => {
     )
 };
 
-export default CeloGameDetailDialog;
+export default ArmGameDetailDialog;

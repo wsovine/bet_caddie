@@ -3,9 +3,10 @@ import {useState, useEffect} from "react";
 import CeloGameCard from "./CeloGameCard";
 import GameListWeekSelect from "./GameListWeekSelect";
 import {Box, Grid, Typography} from "@mui/material";
+import ArmGameCard from "./ArmGameCard";
 
 
-const CeloGameList = () => {
+const ArmGameList = () => {
     const [games, setGames] = useState([]);
     const [week, setWeek] = useState({});
     const [er, setEr] = useState(0);
@@ -47,9 +48,9 @@ const CeloGameList = () => {
     const fetchGames = () => {
         if (week !== undefined) {
             api.get(
-                `/ncaaf/celo/games_list/${week.season}/${week.season_type}/${week.week}/`
+                `/ncaaf/arm/games_list/${week.season}/${week.season_type}/${week.week}/`
             ).then(resp => {
-                setGames(resp.data.games.filter(g => g.celobetcalcs));
+                setGames(resp.data.games);
             })
         }
     };
@@ -69,10 +70,10 @@ const CeloGameList = () => {
         if (games !== undefined) {
             let newEr = 0;
             games.forEach(game => {
-                if (game.celobetcalcs.away_ml_er > 0 && game.celobetcalcs.away_ml_er != null){
-                    newEr += game.celobetcalcs.away_ml_er;
-                } else if (game.celobetcalcs.home_ml_er > 0 && game.celobetcalcs.home_ml_er != null) {
-                    newEr += game.celobetcalcs.home_ml_er;
+                if (game.armbetcalcs.away_ml_er > 0 && game.armbetcalcs.away_ml_er != null){
+                    newEr += game.armbetcalcs.away_ml_er;
+                } else if (game.armbetcalcs.home_ml_er > 0 && game.armbetcalcs.home_ml_er != null) {
+                    newEr += game.armbetcalcs.home_ml_er;
                 }
                 setEr(newEr);
             });
@@ -85,16 +86,16 @@ const CeloGameList = () => {
         if (games !== undefined) {
             let newAr = 0;
             games.forEach(game => {
-                if (game.celobetcalcs.away_ml_er > 0 && game.celobetcalcs.away_ml_er != null){
-                    if (game.AwayTeamScore > game.HomeTeamScore) {
-                        newAr += profit_per_dollar(game.AwayTeamMoneyLine);
-                    }else if (game.AwayTeamScore < game.HomeTeamScore) {
+                if (game.armbetcalcs.away_ml_er > 0 && game.armbetcalcs.away_ml_er != null){
+                    if (game.away_points > game.home_points) {
+                        newAr += profit_per_dollar(game.armbetcalcs.away_ml);
+                    }else if (game.away_points < game.home_points) {
                         newAr -=1;
                     }
-                } else if (game.celobetcalcs.home_ml_er > 0 && game.celobetcalcs.home_ml_er != null) {
-                    if (game.HomeTeamScore > game.AwayTeamScore) {
-                        newAr += profit_per_dollar(game.HomeTeamMoneyLine);
-                    } else if (game.HomeTeamScore < game.AwayTeamScore) {
+                } else if (game.armbetcalcs.home_ml_er > 0 && game.armbetcalcs.home_ml_er != null) {
+                    if (game.home_points > game.away_points) {
+                        newAr += profit_per_dollar(game.armbetcalcs.home_ml);
+                    } else if (game.home_points < game.away_points) {
                         newAr -= 1;
                     }
                 }
@@ -106,7 +107,7 @@ const CeloGameList = () => {
     return (
         <Box>
             <Typography variant='h1' color='primary'>NCAA Football</Typography>
-            <Typography variant='h4' color='secondary'>Calculated ELO</Typography>
+            <Typography variant='h4' color='secondary'>Aggregated Rating Models</Typography>
             {
                 Object.keys(week).length !== 0 ? <GameListWeekSelect
                     api={api} season={week.season} week={week.week}
@@ -115,12 +116,12 @@ const CeloGameList = () => {
             }
             <Grid container spacing={1}>
                 <Grid item xs={12} sm={6}>
-                    <Typography m={1} color='secondary'>
+                    <Typography m={2} color='secondary'>
                         Expected Return per $ : {er.toFixed(2)}
                     </Typography>
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                    <Typography m={1} color='secondary'>
+                    <Typography m={2} color='secondary'>
                         Actual Return per $ : {ar.toFixed(2)}
                     </Typography>
                 </Grid>
@@ -128,8 +129,8 @@ const CeloGameList = () => {
 
             <Grid container spacing={0.5}>
                 {games.map(game => (
-                    <Grid item key={game.GameID} xs={6} sm={4} md={3}>
-                        <CeloGameCard game={game}/>
+                    <Grid item key={game.id} xs={6} md={4}>
+                        <ArmGameCard game={game}/>
                     </Grid>
                 ))}
             </Grid>
@@ -137,4 +138,4 @@ const CeloGameList = () => {
     );
 }
 
-export default CeloGameList;
+export default ArmGameList;

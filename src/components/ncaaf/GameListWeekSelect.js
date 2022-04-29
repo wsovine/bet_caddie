@@ -2,7 +2,7 @@ import {Container, FormControl, InputLabel, MenuItem, Select} from "@mui/materia
 import {useEffect, useState} from "react";
 
 
-const CeloGameListWeekSelect = ({api, season, week, seasonType, setWeek}) => {
+const GameListWeekSelect = ({api, season, week, seasonType, setWeek}) => {
     const [weekOptions, setWeekOptions] = useState([{week: 1}]);
     const [seasonSelection, setSeasonSelection] = useState(season);
     const [weekSelection, setWeekSelection] = useState(week);
@@ -56,4 +56,4 @@ const CeloGameListWeekSelect = ({api, season, week, seasonType, setWeek}) => {
     )
 };
 
-export default CeloGameListWeekSelect;
+export default GameListWeekSelect;

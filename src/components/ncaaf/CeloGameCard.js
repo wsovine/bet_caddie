@@ -5,11 +5,11 @@ import CeloGameDetailDialog from "./CeloGameDetailDialog";
 
 
 const bgColor = (game) => {
-    if (game.gamebetcalcs.away_ml_er > 0) {
-        return `rgba(37, 123, 97, ${game.gamebetcalcs.away_ml_er })`;
+    if (game.celobetcalcs.away_ml_er > 0) {
+        return `rgba(37, 123, 97, ${game.celobetcalcs.away_ml_er })`;
     }
-    else if (game.gamebetcalcs.home_ml_er > 0) {
-        return `rgba(37, 123, 97, ${game.gamebetcalcs.home_ml_er })`;
+    else if (game.celobetcalcs.home_ml_er > 0) {
+        return `rgba(37, 123, 97, ${game.celobetcalcs.home_ml_er })`;
     }
     else {
         return null;
@@ -18,7 +18,7 @@ const bgColor = (game) => {
 
 const outcomeColor = (game, side) => {
     if (side === 'away') {
-        if (game.gamebetcalcs.away_ml_er > 0) {
+        if (game.celobetcalcs.away_ml_er > 0) {
             if (game.AwayTeamScore > game.HomeTeamScore) {
                 return 'lime';
             } else {
@@ -30,7 +30,7 @@ const outcomeColor = (game, side) => {
     }
 
     if (side === 'home') {
-        if (game.gamebetcalcs.home_ml_er > 0) {
+        if (game.celobetcalcs.home_ml_er > 0) {
             if (game.HomeTeamScore > game.AwayTeamScore) {
                 return 'lime';
             } else {
@@ -72,7 +72,7 @@ const CeloGameCard = ({game}) => {
                         </Typography>
                     </Grid>
                     <Grid item xs={4}>
-                        <Typography color={game.gamebetcalcs.away_ml_er > 0 ? 'primary' : 'white'} >
+                        <Typography color={game.celobetcalcs.away_ml_er > 0 ? 'primary' : 'white'} >
                             {game.AwayTeam.Key}
                         </Typography>
                     </Grid>
@@ -85,7 +85,7 @@ const CeloGameCard = ({game}) => {
                         </Typography>
                     </Grid>
                     <Grid item xs={4}>
-                        <Typography color={game.gamebetcalcs.home_ml_er > 0 ? 'primary' : 'white'}>
+                        <Typography color={game.celobetcalcs.home_ml_er > 0 ? 'primary' : 'white'}>
                             {game.HomeTeam.Key}
                         </Typography>
                     </Grid>
