@@ -20,7 +20,7 @@ const BaeGameDetailDialogv2 = ({game, open, handleClose}) => {
             </IconButton>
             <DialogTitle>{game.awayteam} @ {game.hometeam}</DialogTitle>
             <DialogContent>
-                <DialogContentText>
+                { open ? <DialogContentText>
                     <BaePlot game={game} />
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
@@ -30,7 +30,7 @@ const BaeGameDetailDialogv2 = ({game, open, handleClose}) => {
                             <BaeBetConditions game={game} side='home' />
                         </Grid>
                     </Grid>
-                </DialogContentText>
+                </DialogContentText> : undefined }
             </DialogContent>
         </Dialog>
     )
