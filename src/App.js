@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 import * as React from "react";
-import CeloGameList from "./components/ncaaf/CeloGameList";
 import {createTheme, CssBaseline, ThemeProvider} from "@mui/material";
 import NeueHaasDisplayLight from './fonts/NeueHaasDisplayLight.ttf'
 import ModelSelectMenu from "./components/general/ModelSelectMenu";
 import {useState} from "react";
+import BaeGameList from "./components/ncaaf/BAE/BaeGameList";
 
 const neueHaasLight = {
     fontFamily: 'NeueHaas',
@@ -60,7 +60,7 @@ const theme = createTheme({
 });
 
 function App() {
-    const [model, setModel] = useState(<CeloGameList />);
+    const [model, setModel] = useState(<BaeGameList />);
 
   return (
       <ThemeProvider theme={theme}>
