@@ -21,7 +21,9 @@ const BaeGameDetailDialogv2 = ({game, open, handleClose}) => {
             <DialogTitle>{game.awayteam} @ {game.hometeam}</DialogTitle>
             <DialogContent>
                 { open ? <DialogContentText>
+                    <Typography variant='h4'>Win Probabilities</Typography>
                     <BaePlot game={game} />
+                    <Typography variant='h4'>Acceptable Odds</Typography>
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
                             <BaeBetConditions game={game} side='away' />

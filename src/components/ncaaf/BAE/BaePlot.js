@@ -43,9 +43,16 @@ const BaePlot = ({game}) => {
     };
 
     let layout = {
-        width: 500,
-        height: 300,
-        title: 'Win Probabilities',
+        width: 300,
+        height: 275,
+        margin: {
+            l: 15,
+            r: 15,
+            b: 75,
+            t: 75,
+            pad: 0
+        },
+        // title: 'Win Probabilities',
         paper_bgcolor: 'rgba(0,0,0,0)',
         plot_bgcolor: 'rgba(0,0,0,0)',
         font: {

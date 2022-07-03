@@ -22,13 +22,13 @@ const BaeBetConditions = ({game, side}) => {
                         {game[`${side}team`]}
                     </Typography>
                     <Typography align='left'>
-                        Odds (Low): {minimum_odds(game[`${side}_hdi_lower`], 0)}
+                        Good: {minimum_odds(game[`${side}_hdi_lower`], 0)}
                     </Typography>
                     <Typography align='left'>
-                        Odds (Mid): {minimum_odds(game[`${side}_prediction`], 0)}
+                        Fair: {minimum_odds(game[`${side}_prediction`], 0)}
                     </Typography>
                     <Typography align='left'>
-                        Odds (High): {minimum_odds(game[`${side}_hdi_upper`], 0)}
+                        High: {minimum_odds(game[`${side}_hdi_upper`], 0)}
                     </Typography>
 
                 </Grid>
