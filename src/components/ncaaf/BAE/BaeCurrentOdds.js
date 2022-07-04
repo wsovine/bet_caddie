@@ -22,7 +22,7 @@ const BaeCurrentOdds = ({game}) => {
         api.get(
             `/ncaaf/bae/odds/${game.gameid}/`
         ).then(resp => {
-            console.log(resp.data.current_odds);
+            // console.log(resp.data.current_odds);
             setOdds(resp.data.current_odds);
         })
     };
