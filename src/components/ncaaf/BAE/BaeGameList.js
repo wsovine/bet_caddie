@@ -49,7 +49,7 @@ const BaeGameList = () => {
             api.get(
                 `/ncaaf/bae/games_list/${week.season}/${week.season_type}/${week.week}/`
             ).then(resp => {
-                // console.log(resp.data.games)
+                console.log(resp.data.games);
                 setGames(resp.data.games);
             })
         }
@@ -140,7 +140,7 @@ const BaeGameList = () => {
 
             <Grid container spacing={0.5}>
                 {games.map(game => (
-                    <Grid item key={game.id} xs={6} md={4}>
+                    <Grid item key={game.gameid} xs={6} md={4}>
                         <BaeGameCard game={game}/>
                     </Grid>
                 ))}

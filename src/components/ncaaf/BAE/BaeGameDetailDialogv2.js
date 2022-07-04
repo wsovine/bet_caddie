@@ -2,6 +2,7 @@ import {Dialog, DialogContent, DialogContentText, DialogTitle, Grid, IconButton,
 import CloseIcon from '@mui/icons-material/Close';
 import BaePlot from "./BaePlot";
 import BaeBetConditions from "./BaeBetConditions";
+import BaeCurrentOdds from "./BaeCurrentOdds";
 
 
 const BaeGameDetailDialogv2 = ({game, open, handleClose}) => {
@@ -32,6 +33,8 @@ const BaeGameDetailDialogv2 = ({game, open, handleClose}) => {
                             <BaeBetConditions game={game} side='home' />
                         </Grid>
                     </Grid>
+                    <Typography variant='h4'>Current Odds</Typography>
+                    <BaeCurrentOdds game={game} />
                 </DialogContentText> : undefined }
             </DialogContent>
         </Dialog>
