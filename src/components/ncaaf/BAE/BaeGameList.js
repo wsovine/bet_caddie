@@ -49,7 +49,7 @@ const BaeGameList = () => {
             api.get(
                 `/ncaaf/bae/games_list/${week.season}/${week.season_type}/${week.week}/`
             ).then(resp => {
-                console.log(resp.data.games);
+                // console.log(resp.data.games);
                 setGames(resp.data.games);
             })
         }
