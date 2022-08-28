@@ -1,7 +1,6 @@
 import {Button, Menu, MenuItem} from "@mui/material";
 import {useState} from "react";
 import CeloGameList from "../ncaaf/CeloGameList";
-import ArmGameList from "../ncaaf/ArmGameList";
 import BaeGameList from "../ncaaf/BAE/BaeGameList";
 
 const ModelSelectMenu = ({setModel}) => {
@@ -42,7 +41,7 @@ const ModelSelectMenu = ({setModel}) => {
                     'aria-labelledby': 'basic-button',
                 }}
             >
-                <MenuItem onClick={() => selectModel(<ArmGameList/>)}>ARM</MenuItem>
+                {/*<MenuItem onClick={() => selectModel(<ArmGameList/>)}>ARM</MenuItem>*/}
                 <MenuItem onClick={() => selectModel(<BaeGameList/>)}>BAE</MenuItem>
                 <MenuItem onClick={() => selectModel(<CeloGameList/>)}>CELO</MenuItem>
             </Menu>
